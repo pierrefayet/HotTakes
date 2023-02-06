@@ -13,7 +13,7 @@ exports.signup = (req, res, next) => {
       });
       user.save()
         .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(400).json({ message: `Problème serveur !` }));
     })
     .catch(error => res.status(400).json({ error: User }));
 };
@@ -23,6 +23,7 @@ exports.login = (req, res, next) => {
   User.findOne({ email: encryptemail})
     .then(user => {
       if (!user) {
+        //message volontairement flou pour eviter de donner trop d'indication
         return res.status(401).json({ message: 'Paire login/mot de passe incorrecte' });
       }
       bcryptjs.compare(req.body.password, user.password)
@@ -39,6 +40,6 @@ exports.login = (req, res, next) => {
             )
           });
         })
-        .catch(error => res.status(400).json({ error: user }));
     })
+    .catch(error => res.status(400).json({ error: 'erreur serveur' }));
   };
