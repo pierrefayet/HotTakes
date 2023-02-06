@@ -2,15 +2,11 @@ const User = require("../models/user");
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cryptojs =require('crypto-js');
-const dotenv = require('dotenv');
-dotenv.config();
-
-
 
 exports.signup = (req, res, next) => {
-  const encryptemail = cryptojs.HmacSHA256(req.body.email, `${process.env.ACCESS_TOKEN_SECRET_EMAIL}`).toString();
   bcryptjs.hash(req.body.password, 10)
     .then(hash => {
+      const encryptemail = cryptojs.HmacSHA256(req.body.email, `${process.env.ACCESS_TOKEN_SECRET_EMAIL}`).toString();
       const user = new User({
         email: encryptemail,
         password: hash
@@ -19,9 +15,8 @@ exports.signup = (req, res, next) => {
         .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
         .catch(error => res.status(400).json({ error }));
     })
-    .catch(error => res.status(500).json({ error }));
+    .catch(error => res.status(400).json({ error: User }));
 };
-
 
 exports.login = (req, res, next) => {
   const encryptemail = cryptojs.HmacSHA256(req.body.email, `${process.env.ACCESS_TOKEN_SECRET_EMAIL}`).toString();
@@ -44,7 +39,6 @@ exports.login = (req, res, next) => {
             )
           });
         })
-        .catch(error => res.status(500).json({ error }));
+        .catch(error => res.status(400).json({ error: user }));
     })
-    .catch(error => res.status(500).json({ error }));
-};
+  };

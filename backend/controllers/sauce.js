@@ -3,8 +3,6 @@ const fs = require('fs');
 
 exports.createSauce = (req, res, next) => {
   const sauceObject = JSON.parse(req.body.sauce);
-  delete sauceObject._id;
-  delete sauceObject._userId;
   const sauce = new Sauce({
     ...sauceObject,
     userId: req.auth.userId,
@@ -69,7 +67,7 @@ exports.deleteSauce = (req, res, next) => {
       };
     })
     .catch(error => {
-      res.status(500).json({ error });
+      res.status(400).json({ error });
     });
 };
 
@@ -125,6 +123,10 @@ exports.likesAndDislikes = (req, res, next) => {
         }
       })
       .catch((error) => res.status(404).json({ error }));
+  }
+
+  if (like !== 0 && like !== 1 && like !== -1) {
+    res.status(400).json({message: 'La valeur de like doit être 0, 1 ou -1'});
   }
 }
 
