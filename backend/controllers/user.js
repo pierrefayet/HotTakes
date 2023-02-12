@@ -3,7 +3,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cryptojs =require('crypto-js');
 
-exports.signup = (req, res, next) => {
+exports.signup = (req, res) => {
   bcryptjs.hash(req.body.password, 10)
     .then(hash => {
       const encryptemail = cryptojs.HmacSHA256(req.body.email, `${process.env.ACCESS_TOKEN_SECRET_EMAIL}`).toString();
@@ -18,7 +18,7 @@ exports.signup = (req, res, next) => {
     .catch(error => res.status(400).json({ error: User }));
 };
 
-exports.login = (req, res, next) => {
+exports.login = (req, res) => {
   const encryptemail = cryptojs.HmacSHA256(req.body.email, `${process.env.ACCESS_TOKEN_SECRET_EMAIL}`).toString();
   User.findOne({ email: encryptemail})
     .then(user => {
