@@ -1,34 +1,21 @@
-
 # Build a secure api for the PIIQUANTE website
 
+## Function: 
 
-
-## Context: 
-
-Piiquante is a company dedicated to the creation of spicy sauces. To take advantage of its success and generate more traffic, the company wants to create a web application in which users can add their favorite sauces and like or dislike the sauces added by others. To make a secure API to avoid common attacks and secure the user.
-
+This project is the backend of the HOT TAKES site and offers to add, like or dislike a sauce. It is possible to modify or delete a sauce that you have added yourself.
+Implementation of the back-end and the API with NODE JS and MONGO DB
 
 ## Installation
 
-Here are the dependancies you need to install: 
+To install this project:
 
-- bcrypjs
-- cors-crypto-js
-- dotenv
-- express
-- helmet 
-- jsonwebtoken
-- mongoose
-- moongose-unique-validator
-- multer
-- nodemon
-- password-validator
-- path
-- validator  
-  
+Clone this repository: git@github.com:pierrefayet/projet--6.git
+
+Make install NODE.JS and create a account at MONGO DB
+
 ## Deployment
 
-To deploy this project run
+For run 
 
 ```bash
   nodemon server
