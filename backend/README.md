@@ -2,8 +2,8 @@
 
 ## Function: 
 
-This project is the backend of the HOT TAKES site and offers to add, like or dislike a sauce. It is possible to modify or delete a sauce that you have added yourself.
-Implementation of the back-end and the API with NODE JS and MONGO DB
+This project is the backend of the PIIQUANTE site, allows the management of sauces.
+Implementation of the back-end and the API with NODE JS and MONGO DB.
 
 ## Installation
 
@@ -11,14 +11,14 @@ To install this project:
 
 Clone this repository: git@github.com:pierrefayet/projet--6.git
 
-Make install NODE.JS and create a account at MONGO DB
+Then install NODE.JS and create an account for mongo db at https://www.mongodb.com/fr-fr
 
 ## Deployment
 
-For run 
+To Run this project
 
 ```bash
   nodemon server
 ```
 
-The backend run with port 3000
+The backend runs on port 3000
